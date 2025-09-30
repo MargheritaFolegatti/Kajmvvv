@@ -1,0 +1,21 @@
+<div class="col-md-3 col-sm-6">
+	<div class="product text-center">
+		<div class="product-image">
+			{% for i in 1..j.photoNumber %}
+				<a href="#">
+					<img src="{{ asset('images/products/' ~ j.id ~ '/' ~ i ~ '.jpg') }}" alt="{{ j.title }}">
+				</a>
+			{% endfor %}
+		</div>
+		<div class="product-desc mt-2">
+			<div class="product-title">
+				<div class="text-uppercase ls-1">
+					<i class="fa-regular fa-folder-open"></i>
+					{{ j.category.value }}</div>
+				<h3 class="mt-1 mb-0 h5">{{ j.title }}</h3>
+			</div>
+			<div class="product-price fw-light mt-2 color_bl">€
+				{{ j.price }}</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,25 @@
+parameters:
+    cookies_domain: "localhost"
+    cookies_ga4: "18HHP5E60Q"
+    web_path: "public"
+    object_contact_info: "Richiesta informazioni dal sito www.castellazzodestampi.org"
+    object_recover_password: "Recupero password account RPG"
+    email_noreply: "noreply@rpgmultimedia.it"
+
+services:
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+            
+    App\Controller\:
+        resource: '../src/Controller/'
+        tags: ['controller.service_arguments']
+           
+    

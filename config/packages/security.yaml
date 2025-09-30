@@ -1,0 +1,37 @@
+security:
+    enable_authenticator_manager: true
+    
+    password_hashers:
+        Symfony\Component\Security\Core\User\User: 
+            algorithm: plaintext
+        Symfony\Component\Security\Core\User\InMemoryUser:
+            algorithm: plaintext
+        App\Entity\User:
+            algorithm: plaintext
+
+    providers:
+        user_provider:
+            entity:
+                class: App\Entity\User
+                property: code
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        
+        main:
+            lazy: true
+            provider: user_provider
+           
+
+        admin:
+            lazy: true
+            provider: user_provider
+
+    role_hierarchy:
+        ROLE_SUPER_ADMIN:  [ROLE_USER, ROLE_STAFF, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    access_control:
+        - { path: '^/amministratore', roles: ROLE_ADMIN }
+        - { path: '^/paddock', roles: ROLE_USER }
